@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdesign.mapper.MessageMapper">
+
+    <select id="getLessenID" resultMap="seeLessenID">
+        select lessenID from message
+    </select>
+
+    <resultMap id="seeLessenID" type="string">
+        <result column="lessenID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getImage" resultType="string">
+        select image from lessen where lessenID=#{lessenID}
+    </select>
+
+    <select id="getMessageItem" resultType="com.example.backdesign.bean.MessageBean">
+        select * from message where lessenID=#{lessenID} order by times desc limit 1
+    </select>
+
+    <select id="getUserName" resultType="string">
+        select userName from user where userID=#{userID}
+    </select>
+
+    <select id="getLessenName" resultType="string">
+        select lessenName from lessen where lessenID=#{lessenName}
+    </select>
+
+</mapper>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">堂测</string>
+    <!-- 主页 -->
+    <string name="msg">消息</string>
+    <string name="lessen">课程</string>
+    <string name="me">我的</string>
+
+    <string name="already_publish">已发布</string>
+    <string name="wait_publish">待发布</string>
+
+    <string name="single">单选题</string>
+    <string name="multiple">多选题</string>
+    <string name="shorts">简答题</string>
+    <string name="judge">判断题</string>
+    <string name="fill">填空题</string>
+
+
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdesign.mapper.LessenMapper">
+    
+    <select id="getLessenMsg" resultType="com.example.backdesign.bean.ShowLessenBean">
+        select lessenID,lessenName,image from lessen
+    </select>
+
+    <select id="getLessenNameMsg" resultType="string">
+        select lessenName from lessen where lessenID=#{lessenID}
+    </select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F5F5F5"
+    android:gravity="right">
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:background="#333333"
+        android:paddingLeft="20dp"
+        android:padding="20dp"
+        android:text="创建测试"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"></Button>
+
+    <!--菜单添加好友-->
+    <Button
+        android:id="@+id/inter"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:background="#333333"
+        android:paddingLeft="20dp"
+        android:padding="20dp"
+        android:text="导入题库"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"></Button>
+
+
+</LinearLayout>

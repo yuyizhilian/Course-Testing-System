@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#F5F5F5"
+    android:orientation="horizontal">
+
+    <!-- ImageButton没加android:clickable="false"时，
+    点击下方的ImageBuutton不会改变页面，点击TextView才会改变页面，
+    这是因为每个tab是一个LinearLayout，每个LinearLayout都有一个ImageButton，
+    当点击ImageButton位置时，点击事件首先会到LinearLayout上，LinearLayout会去判断，
+    发现内部有一个ImageButton可以解决点击事件，所以就把点击事件交给ImageButton，
+    而ImageButton又没有写点击事件，所以点击事件就失效了。-->
+
+    <LinearLayout
+        android:id="@+id/tab_weixin"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/tab_weixin_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#F5F5F5"
+            android:clickable="false"
+            android:src="@drawable/msg1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消息"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_friend"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/tab_friend_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#F5F5F5"
+            android:clickable="false"
+            android:src="@drawable/lessen" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="课程"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_tongxunlu"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/tab_tongxunlu_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#F5F5F5"
+            android:clickable="false"
+            android:src="@drawable/me" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="circleImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="life_spinner_style"  parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">25sp</item><!--可以按照自己的情况在里面设定-->
+    </style>
+</resources>

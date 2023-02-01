@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backdesign.mapper.TestMapper">
+
+    <select id="getTestItemMapper" resultType="com.example.backdesign.bean.TestBean">
+        select testID,testName,times from test where testID=#{testID}
+    </select>
+
+    <select id="getTestID" resultMap="getTestId">
+        select testID from unreleased where lessenID=#{lessenID} order by times desc
+    </select>
+
+    <resultMap id="getTestId" type="string">
+        <result column="testID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAlreadyTestID" resultMap="alreadyTest">
+        select testID from issue where lessenID=#{lessenID} order by times desc
+    </select>
+
+    <resultMap id="alreadyTest" type="string">
+        <result column="testID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAlreadyTestMapper" resultType="com.example.backdesign.bean.AlreadyTestBean">
+        select publishID,testID,publishName,fulls,numbers,starts,ends from publish where testID=#{testID} order by times desc
+    </select>
+    
+    <insert id="storageTestMapper">
+        insert into test(testID,testName,userID)
+        values(
+                  #{testID},
+                  #{testName},
+                  #{userID}
+              )
+    </insert>
+
+    <insert id="storageProblemMapper">
+        insert into problem(problemID,testID,numbers,titles)
+        values (
+                   #{problemID},
+                   #{testID},
+                   #{numbers},
+                   #{titles}
+               )
+    </insert>
+
+    <insert id="storageAnswerMapper">
+        insert into answer(answerID,problemID,tag,content)
+        values (
+                   #{answerID},
+                   #{problemID},
+                   #{tag},
+                   #{content}
+               )
+    </insert>
+
+    <update id="storageRightMapper" >
+        update problem
+        set rights = #{rights}
+        where problemID = #{problemID}
+    </update>
+
+    <insert id="storageUnreleasedTestMapper">
+        insert into unreleased(unreleased,lessenID,testID,times)
+        values (
+                   #{unreleased},
+                   #{lessenID},
+                   #{testID},
+                   #{times}
+               )
+    </insert>
+
+
+
+</mapper>
