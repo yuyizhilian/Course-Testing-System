@@ -93,149 +93,70 @@
             android:id="@+id/single"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- RadioButton -->
+                <RadioButton
+                    android:id="@+id/a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="A"
+                    android:textSize="25sp"/>
+
+                <!-- RadioButton -->
+                <RadioButton
+                    android:id="@+id/b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="B"
+                    android:textSize="25sp"/>
+
+                <!-- RadioButton -->
+                <RadioButton
+                    android:id="@+id/c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="C"
+                    android:textSize="25sp"/>
+                <!-- RadioButton -->
+                <RadioButton
+                    android:id="@+id/d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="D"
+                    android:textSize="25sp"/>
+            </RadioGroup>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioGroup
-                    android:id="@+id/radioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!-- RadioButton -->
-                    <RadioButton
-                        android:id="@+id/a"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:text="A"
-                        android:textSize="25sp"/>
-
-                    <!-- RadioButton -->
-                    <RadioButton
-                        android:id="@+id/b"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="B"
-                        android:textSize="25sp"/>
-
-                    <!-- RadioButton -->
-                    <RadioButton
-                        android:id="@+id/c"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:text="C"
-                        android:textSize="25sp"/>
-                    <!-- RadioButton -->
-                    <RadioButton
-                        android:id="@+id/d"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="D"
-                        android:textSize="25sp"/>
-                </RadioGroup>
-
-                <LinearLayout
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/aa"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <EditText
-                            android:id="@+id/aa"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/sub"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-
-                        <EditText
-                            android:id="@+id/bb"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/sub"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-
-                        <EditText
-                            android:id="@+id/cc"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/sub"/>
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-
-                        <EditText
-                            android:id="@+id/dd"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/sub"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:layout_height="50dp" />
+                <EditText
+                    android:id="@+id/bb"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+                <EditText
+                    android:id="@+id/cc"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+                <EditText
+                    android:id="@+id/dd"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
 
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:text="+添加选项"
-                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -261,13 +182,8 @@
                 <EditText
                     android:id="@+id/AA"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <ImageView
-                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
+                    android:layout_weight="1"/>
 
 
             </LinearLayout>
@@ -287,14 +203,8 @@
                 <EditText
                     android:id="@+id/BB"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <ImageView
-                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
-
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -313,13 +223,8 @@
                 <EditText
                     android:id="@+id/CC"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <ImageView
-                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
+                    android:layout_weight="1"/>
 
 
             </LinearLayout>
@@ -339,23 +244,10 @@
                 <EditText
                     android:id="@+id/DD"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:layout_weight="1"/>
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
-
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:text="+添加选项"
-                android:textSize="20sp"/>
 
         </LinearLayout>
 
@@ -382,14 +274,8 @@
                 <EditText
                     android:id="@+id/one"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <ImageView
-                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
-
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -409,13 +295,9 @@
                 <EditText
                     android:id="@+id/two"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"/>
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
 
 
             </LinearLayout>
@@ -436,14 +318,8 @@
                 <EditText
                     android:id="@+id/three"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <ImageView
-                    android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
-
+                    android:layout_weight="1"/>
 
             </LinearLayout>
 
@@ -463,23 +339,10 @@
                 <EditText
                     android:id="@+id/four"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"/>
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/sub"/>
-
             </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:text="+添加选项"
-                android:textSize="20sp"/>
 
         </LinearLayout>
 

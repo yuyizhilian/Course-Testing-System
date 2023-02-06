@@ -1,10 +1,11 @@
 package com.example.backdesign.mapper;
 
+import com.example.backdesign.bean.ChatMessageBean;
 import com.example.backdesign.bean.MessageBean;
-import com.example.backdesign.bean.MessageItemBean;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Mapper
 public interface MessageMapper {
@@ -18,4 +19,10 @@ public interface MessageMapper {
     String getUserName(String userID);
 
     String getLessenName(String lessenID);
+
+    List<MessageBean>  getLessenMessage(String lessenID);
+
+    String getUserImage(String userID);
+
+
 }

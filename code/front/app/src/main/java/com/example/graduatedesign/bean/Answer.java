@@ -15,6 +15,13 @@ public class Answer {
         this.content=content;
     }
 
+    public Answer(String answerID,String problemID,String tag, String content){
+        this.answerID=answerID;
+        this.problemID=problemID;
+        this.tag=tag;
+        this.content=content;
+    }
+
     public String getAnswerID() {
         return answerID;
     }

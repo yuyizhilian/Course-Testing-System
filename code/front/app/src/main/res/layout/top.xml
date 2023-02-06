@@ -4,16 +4,27 @@
     android:layout_height="45dp"
     android:gravity="center"
     android:background="#F5F5F5"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/top"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="消息"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:textStyle="bold" />
+
+    <!--菜单按钮-->
+    <Button
+        android:id="@+id/menu"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:onClick="OnMenu"
+        android:layout_gravity="center"
+        android:background="@drawable/add"/>
 
 </LinearLayout>

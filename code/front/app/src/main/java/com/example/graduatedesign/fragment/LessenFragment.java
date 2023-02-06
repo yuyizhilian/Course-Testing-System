@@ -41,7 +41,6 @@ public class LessenFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_lessen_content,container,false);
         ButterKnife.bind(this,view);
         lst=view.findViewById(R.id.list);
-        Log.d("21111111111111111111111", "fqee2222222222222buffer.toString()");
         initLessenData();
         return view;
     }
@@ -73,13 +72,10 @@ public class LessenFragment extends Fragment {
             @Override
             public void run() {
                 try {
-//                    Thread.sleep(5000);
-                    Log.d("3333333333333333333", "fqee2222222222222buffer.toString()");
                     String path="http://mdzs.free.svipss.top/seeLessen";
                     URL url = new URL(path);
                     //打开httpurlconnection
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    Log.d("999999999999999999", "000000000000000");
                     conn.setRequestMethod("GET");              //设置POST方式获取数据
                     conn.setConnectTimeout(10000);              //设置连接超时时间5秒
                     int code = conn.getResponseCode();         // 获取response状态，200表示成功获取资源，404表示资源不存在
@@ -92,7 +88,6 @@ public class LessenFragment extends Fragment {
                             buffer.append(len);
                         }
                         JSONObject jsonObjectALL = new JSONObject(buffer.toString());
-                        Log.d("21111111111111111111111", buffer.toString());
                         JSONArray jsonArray = jsonObjectALL.getJSONArray("data");
                         List<Lessen> lessenList=new ArrayList<>();
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -110,10 +105,8 @@ public class LessenFragment extends Fragment {
                         }
 
                     }
-                    Log.d("33333333333333333333","444444444444444444444444");
                     conn.disconnect();
                 } catch (Exception e) {
-                    Log.d("7777777777777","55555555");
                     e.printStackTrace();
                 }
             }

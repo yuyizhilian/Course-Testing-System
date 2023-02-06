@@ -3,14 +3,17 @@ package com.example.graduatedesign.bean;
 public class Problem {
 
     private String problemID;
-    private String answerID;
+    private String testID;
     private int number;
+
+    private int type;
     private String title;
     private String right;
 
-    public Problem(String problemID,String answerID,int number,String title,String right){
+    public Problem(String problemID,String testID,int number,int type,String title,String right){
         this.problemID=problemID;
-        this.answerID=answerID;
+        this.testID=testID;
+        this.type=type;
         this.number=number;
         this.title=title;
         this.right=right;
@@ -24,14 +27,21 @@ public class Problem {
         return problemID;
     }
 
-    public void setAnswerID(String answerID) {
-        answerID = answerID;
+    public String getTestID() {
+        return testID;
     }
 
-    public String getAnswerID() {
-        return answerID;
+    public void setTestID(String testID) {
+        this.testID = testID;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
     public void setNumber(int number) {
         this.number = number;
     }

@@ -1,16 +1,19 @@
 package com.example.graduatedesign.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.graduatedesign.R;
+import com.example.graduatedesign.activity.MessageActivity;
 import com.example.graduatedesign.adapter.MsgFragmentAdapter;
 import com.example.graduatedesign.bean.Messages;
 
@@ -49,6 +52,15 @@ public class MsgFragment extends Fragment {
                     List<Messages> messages=(List<Messages>)msg.obj;
                     MsgFragmentAdapter adapter=new MsgFragmentAdapter(getContext(),messages);
                     lst.setAdapter(adapter);
+                    lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            Intent intent=new Intent(getContext(), MessageActivity.class);
+                            intent.putExtra("lessenID",messages.get(i).getLessenID());
+                            intent.putExtra("lessenName",messages.get(i).getLessenName());
+                            startActivity(intent);
+                        }
+                    });
                     break;
             }
         }
@@ -80,13 +92,15 @@ public class MsgFragment extends Fragment {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             // JSON数组里面的具体-JSON对象
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            String messageID=jsonObject.optString("messsageID",null);
+                            String messageID=jsonObject.optString("messageID",null);
+                            String lessenID=jsonObject.optString("lessenID",null);
+                            String userID=jsonObject.optString("userID",null);
                             String lessenName = jsonObject.optString("lessenName", null);
                             String image = jsonObject.optString("image", null);
                             String time=jsonObject.optString("times",null);
                             String mess=jsonObject.optString("msg",null);
                             String user=jsonObject.optString("user",null);
-                            Messages message=new Messages(messageID,image,lessenName,user,mess,time);
+                            Messages message=new Messages(messageID,lessenID,userID,image,lessenName,user,mess,time);
                             messagesList.add(message);
                             Message msg=new Message();
                             msg.what=MESSAGE;

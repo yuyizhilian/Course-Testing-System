@@ -3,6 +3,8 @@ package com.example.graduatedesign.bean;
 public class Messages {
 
     private String messageID;
+    private String lessenID;
+    private String userID;
     private String image;
     private String lessenName;
     private String user;
@@ -17,8 +19,27 @@ public class Messages {
     public void setMessageID(String messageID) {
         this.messageID = messageID;
     }
-    public Messages(String messageID,String image, String lessenName, String user, String msg, String time){
+
+    public String getLessenID() {
+        return lessenID;
+    }
+
+    public void setLessenID(String lessenID) {
+        this.lessenID = lessenID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public Messages(String messageID, String lessenID,String userID, String image, String lessenName, String user, String msg, String time){
         this.messageID=messageID;
+        this.lessenID=lessenID;
+        this.userID=userID;
         this.image=image;
         this.lessenName=lessenName;
         this.user=user;

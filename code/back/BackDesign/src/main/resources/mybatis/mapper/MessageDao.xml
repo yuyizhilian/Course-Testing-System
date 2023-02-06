@@ -28,4 +28,13 @@
         select lessenName from lessen where lessenID=#{lessenName}
     </select>
 
+    <select id="getLessenMessage" resultType="com.example.backdesign.bean.MessageBean">
+        select * from message where lessenID=#{lessenID} order by times asc
+    </select>
+
+    <select id="getUserImage" resultType="string">
+        select image from user where userID=#{userID}
+    </select>
+
+
 </mapper>

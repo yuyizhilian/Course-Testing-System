@@ -47,6 +47,8 @@ public class TestProblemActivity extends AppCompatActivity {
     private static final int MESS4= 5;
     private static final int MESS5= 6;
 
+    private static final int INTENT= 7;
+
 
     //private final int[] items = new int[]{R.string.single,R.string.multiple,R.string.judge,R.string.fill,R.string.shorts};
     private String[] items=new String[]{"单选题","多选题","判断题","填空题","简答题"};
@@ -197,7 +199,6 @@ public class TestProblemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 titleName = String.valueOf(name.getText());
-                Log.d("1111111111111111111111", titleName);
                 if (temp) {
                     new Thread(new Runnable() {
                         @Override
@@ -263,8 +264,6 @@ public class TestProblemActivity extends AppCompatActivity {
                         }
                     }).start();
                 } else {
-                    Problem problem = null;
-                    Answer answer = null;
                     String str = (String) number.getText();
                     String regEx = "[^0-9]";
                     Pattern p = Pattern.compile(regEx);
@@ -319,7 +318,7 @@ public class TestProblemActivity extends AppCompatActivity {
                                                     conn.setConnectTimeout(5000);              //设置连接超时时间5秒
                                                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
                                                     //将数据进行编码,然后会自动的将该数据放到post中传到后台
-                                                    String data = "problemID=" + problemID + "&right=" + selectText1;
+                                                    String data = "problemID=" + problemID + "&right=" + selectText1+"&type="+0;
                                                     conn.setRequestProperty("Charset", "UTF-8");
                                                     conn.setRequestProperty("connection", "keep-alive");
                                                     conn.setDoOutput(true); //指定输出模式
@@ -400,7 +399,7 @@ public class TestProblemActivity extends AppCompatActivity {
                                                     conn.setConnectTimeout(5000);              //设置连接超时时间5秒
                                                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
                                                     //将数据进行编码,然后会自动的将该数据放到post中传到后台
-                                                    String data = "problemID=" + problemID + "&right=" + right;
+                                                    String data = "problemID=" + problemID + "&right=" + right+"&type="+1;
                                                     conn.setRequestProperty("Charset", "UTF-8");
                                                     conn.setRequestProperty("connection", "keep-alive");
                                                     conn.setDoOutput(true); //指定输出模式
@@ -470,7 +469,7 @@ public class TestProblemActivity extends AppCompatActivity {
                                                     conn.setConnectTimeout(5000);              //设置连接超时时间5秒
                                                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
                                                     //将数据进行编码,然后会自动的将该数据放到post中传到后台
-                                                    String data = "problemID=" + problemID + "&right=" + right;
+                                                    String data = "problemID=" + problemID + "&right=" + right+"&type="+2;
                                                     conn.setRequestProperty("Charset", "UTF-8");
                                                     conn.setRequestProperty("connection", "keep-alive");
                                                     conn.setDoOutput(true); //指定输出模式
@@ -539,7 +538,7 @@ public class TestProblemActivity extends AppCompatActivity {
                                                     conn.setConnectTimeout(5000);              //设置连接超时时间5秒
                                                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
                                                     //将数据进行编码,然后会自动的将该数据放到post中传到后台
-                                                    String data = "problemID=" + problemID + "&right=" + selectText2;
+                                                    String data = "problemID=" + problemID + "&right=" + selectText2+"&type="+3;
                                                     conn.setRequestProperty("Charset", "UTF-8");
                                                     conn.setRequestProperty("connection", "keep-alive");
                                                     conn.setDoOutput(true); //指定输出模式
@@ -572,7 +571,7 @@ public class TestProblemActivity extends AppCompatActivity {
                                                     conn.setConnectTimeout(5000);              //设置连接超时时间5秒
                                                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
                                                     //将数据进行编码,然后会自动的将该数据放到post中传到后台
-                                                    String data = "problemID=" + problemID + "&right=" + right;
+                                                    String data = "problemID=" + problemID + "&right=" + right+"&type="+4;
                                                     conn.setRequestProperty("Charset", "UTF-8");
                                                     conn.setRequestProperty("connection", "keep-alive");
                                                     conn.setDoOutput(true); //指定输出模式
@@ -590,8 +589,410 @@ public class TestProblemActivity extends AppCompatActivity {
                                         Message msg = new Message();
                                         msg.what = MESS5;
                                         handler.sendMessage(msg);
-                                        title.setText(null);
-                                        shorts.setText(null);
+                                    }
+                                }
+                                conn.disconnect();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                titleName = String.valueOf(name.getText());
+                if (temp) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                String path = "http://mdzs.free.svipss.top/storageTest?";
+                                URL url = new URL(path);
+                                //打开httpurlconnection
+                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                String data = "testName=" + titleName + "&userID=" + userID;
+                                conn.setRequestProperty("Charset", "UTF-8");
+                                conn.setRequestProperty("connection", "keep-alive");
+                                conn.setDoOutput(true); //指定输出模式
+                                conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                int code = conn.getResponseCode();
+                                if (code == 200) {
+                                    InputStream is = conn.getInputStream();
+                                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                                    StringBuffer buffer = new StringBuffer();
+                                    String len = null;
+                                    while ((len = br.readLine()) != null) {
+                                        buffer.append(len);
+                                    }
+                                    JSONObject jsonObject = new JSONObject(buffer.toString());
+                                    testID = jsonObject.optString("data", null);
+                                    temp = false;
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                String path = "http://mdzs.free.svipss.top/storageUnreleasedTest?";
+                                                URL url = new URL(path);
+                                                //打开httpurlconnection
+                                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                String data = "lessenID=" + lessenID + "&testID=" + testID;
+                                                conn.setRequestProperty("Charset", "UTF-8");
+                                                conn.setRequestProperty("connection", "keep-alive");
+                                                conn.setDoOutput(true); //指定输出模式
+                                                conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                int code = conn.getResponseCode();
+                                                if (code == 200) {
+
+                                                }
+                                                conn.disconnect();
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }).start();
+                                }
+                                conn.disconnect();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                } else {
+                    String str = (String) number.getText();
+                    String regEx = "[^0-9]";
+                    Pattern p = Pattern.compile(regEx);
+                    Matcher m = p.matcher(str);
+                    String result = m.replaceAll("").trim();
+                    title_name = String.valueOf(title.getText());
+                    num = Integer.valueOf(result);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                String path = "http://mdzs.free.svipss.top/storageProblem?";
+                                URL url = new URL(path);
+                                //打开httpurlconnection
+                                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                String data = "testID=" + testID + "&number=" + num + "&title=" + title_name;
+//                            String data="userID="+ URLEncoder.encode("123456","utf-8")+"&userPwd="+URLEncoder.encode("123456","utf-8")+"&userName="+URLEncoder.encode("123456","utf-8")+"&phoneNumber="+URLEncoder.encode("123456","utf-8");
+                                //指定长度
+                                conn.setRequestProperty("Charset", "UTF-8");
+                                conn.setRequestProperty("connection", "keep-alive");
+                                conn.setDoOutput(true); //指定输出模式
+                                conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                int code = conn.getResponseCode();
+                                if (code == 200) {
+                                    InputStream is = conn.getInputStream();
+                                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                                    StringBuffer buffer = new StringBuffer();
+                                    String len = null;
+                                    while ((len = br.readLine()) != null) {
+                                        buffer.append(len);
+                                    }
+                                    JSONObject jsonObject = new JSONObject(buffer.toString());
+                                    String problemID = jsonObject.optString("data", null);
+                                    if (single.getVisibility() == View.VISIBLE) { //题型为单选题
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+
+                                                    String path = "http://mdzs.free.svipss.top/storageRight?";
+                                                    URL url = new URL(path);
+                                                    //打开httpurlconnection
+                                                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                    conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                    conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                    //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                    String data = "problemID=" + problemID  + "&right=" + selectText1+"&type="+0;
+                                                    Log.d("1111111111111111", data);
+                                                    conn.setRequestProperty("Charset", "UTF-8");
+                                                    conn.setRequestProperty("connection", "keep-alive");
+                                                    conn.setDoOutput(true); //指定输出模式
+                                                    conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                    int code = conn.getResponseCode();
+                                                    if (code == 200) {
+
+                                                    }
+                                                    conn.disconnect();
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Answer answer1 = new Answer(problemID, "A", aa.getText().toString());
+                                        list_single.add(answer1);
+                                        Answer answer2 = new Answer(problemID, "B", bb.getText().toString());
+                                        list_single.add(answer2);
+                                        Answer answer3 = new Answer(problemID, "C", cc.getText().toString());
+                                        list_single.add(answer3);
+                                        Answer answer4 = new Answer(problemID, "D", dd.getText().toString());
+                                        list_single.add(answer4);
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    for (int i = 0; i < list_single.size(); i++) {
+                                                        String path = "http://mdzs.free.svipss.top/storageAnswer?";
+                                                        URL url = new URL(path);
+                                                        //打开httpurlconnection
+                                                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                        conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                        conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                        //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                        String data = "problemID=" + list_single.get(i).getProblemID() + "&tag=" + list_single.get(i).getTag() + "&content=" + list_single.get(i).getContent();
+                                                        conn.setRequestProperty("Charset", "UTF-8");
+                                                        conn.setRequestProperty("connection", "keep-alive");
+                                                        conn.setDoOutput(true); //指定输出模式
+                                                        conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                        int code = conn.getResponseCode();
+                                                        if (code == 200) {
+
+                                                        }
+                                                        conn.disconnect();
+                                                    }
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Message msg = new Message();
+                                        msg.what = INTENT;
+                                        handler.sendMessage(msg);
+                                    }
+                                    if (multiple.getVisibility() == View.VISIBLE) { //题型为多选题
+                                        if(A.isChecked()) {
+                                            right += "A";
+                                        }
+                                        if(B.isChecked()){
+                                            right += "B";
+                                        }
+                                        if(C.isChecked()){
+                                            right += "C";
+                                        }
+                                        if(D.isChecked()){
+                                            right += "D";
+                                        }
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    String path = "http://mdzs.free.svipss.top/storageRight?";
+                                                    URL url = new URL(path);
+                                                    //打开httpurlconnection
+                                                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                    conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                    conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                    //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                    String data = "problemID=" + problemID  + "&right=" + right+"&type="+ 1;
+                                                    conn.setRequestProperty("Charset", "UTF-8");
+                                                    conn.setRequestProperty("connection", "keep-alive");
+                                                    conn.setDoOutput(true); //指定输出模式
+                                                    conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                    int code = conn.getResponseCode();
+                                                    if (code == 200) {
+
+                                                    }
+                                                    conn.disconnect();
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Answer answer1 = new Answer(problemID, "A", AA.getText().toString());
+                                        list_multiple.add(answer1);
+                                        Answer answer2 = new Answer(problemID, "B", BB.getText().toString());
+                                        list_multiple.add(answer2);
+                                        Answer answer3 = new Answer(problemID, "C", CC.getText().toString());
+                                        list_multiple.add(answer3);
+                                        Answer answer4 = new Answer(problemID, "D", DD.getText().toString());
+                                        list_multiple.add(answer4);
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    for (int i = 0; i < list_multiple.size(); i++) {
+                                                        String path = "http://mdzs.free.svipss.top/storageAnswer?";
+                                                        URL url = new URL(path);
+                                                        //打开httpurlconnection
+                                                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                        conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                        conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                        //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                        String data = "problemID=" + list_multiple.get(i).getProblemID() + "&tag=" + list_multiple.get(i).getTag() + "&content=" + list_multiple.get(i).getContent();
+                                                        conn.setRequestProperty("Charset", "UTF-8");
+                                                        conn.setRequestProperty("connection", "keep-alive");
+                                                        conn.setDoOutput(true); //指定输出模式
+                                                        conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                        int code = conn.getResponseCode();
+                                                        if (code == 200) {
+
+                                                        }
+                                                        conn.disconnect();
+                                                    }
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Message msg = new Message();
+                                        msg.what = INTENT;
+                                        handler.sendMessage(msg);
+                                    }
+                                    if (fill.getVisibility() == View.VISIBLE) { //题型为填空题
+                                        String right=one.getText().toString()+","+two.getText().toString()+","+three.getText().toString()+","+four.getText().toString();
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    String path = "http://mdzs.free.svipss.top/storageRight?";
+                                                    URL url = new URL(path);
+                                                    //打开httpurlconnection
+                                                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                    conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                    conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                    //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                    String data = "problemID=" + problemID  + "&right=" + right+"&type="+2;
+                                                    conn.setRequestProperty("Charset", "UTF-8");
+                                                    conn.setRequestProperty("connection", "keep-alive");
+                                                    conn.setDoOutput(true); //指定输出模式
+                                                    conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                    int code = conn.getResponseCode();
+                                                    if (code == 200) {
+
+                                                    }
+                                                    conn.disconnect();
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Answer answer1 = new Answer(problemID, "1", one.getText().toString());
+                                        list_fill.add(answer1);
+                                        Answer answer2 = new Answer(problemID, "2", two.getText().toString());
+                                        list_fill.add(answer2);
+                                        Answer answer3 = new Answer(problemID, "3", three.getText().toString());
+                                        list_fill.add(answer3);
+                                        Answer answer4 = new Answer(problemID, "4", four.getText().toString());
+                                        list_fill.add(answer4);
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    for (int i = 0; i < list_fill.size(); i++) {
+                                                        String path = "http://mdzs.free.svipss.top/storageAnswer?";
+                                                        URL url = new URL(path);
+                                                        //打开httpurlconnection
+                                                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                        conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                        conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                        //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                        String data = "problemID=" + list_fill.get(i).getProblemID() + "&tag=" + list_fill.get(i).getTag() + "&content=" + list_fill.get(i).getContent();
+                                                        conn.setRequestProperty("Charset", "UTF-8");
+                                                        conn.setRequestProperty("connection", "keep-alive");
+                                                        conn.setDoOutput(true); //指定输出模式
+                                                        conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                        int code = conn.getResponseCode();
+                                                        if (code == 200) {
+
+                                                        }
+                                                        conn.disconnect();
+                                                    }
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Message msg = new Message();
+                                        msg.what = INTENT;
+                                        handler.sendMessage(msg);
+                                    }
+                                    if (judge.getVisibility() == View.VISIBLE) { //题型为判断题
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    String path = "http://mdzs.free.svipss.top/storageRight?";
+                                                    URL url = new URL(path);
+                                                    //打开httpurlconnection
+                                                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                    conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                    conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                    //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                    String data = "problemID=" + problemID +"&right=" + selectText2+ "&type="+3;
+                                                    conn.setRequestProperty("Charset", "UTF-8");
+                                                    conn.setRequestProperty("connection", "keep-alive");
+                                                    conn.setDoOutput(true); //指定输出模式
+                                                    conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                    int code = conn.getResponseCode();
+                                                    if (code == 200) {
+
+                                                    }
+                                                    conn.disconnect();
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Message msg = new Message();
+                                        msg.what = INTENT;
+                                        handler.sendMessage(msg);
+                                    }
+                                    if (shorts.getVisibility() == View.VISIBLE) { //题型为简答题
+                                        String right=shorts.getText().toString();
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                try {
+                                                    String path = "http://mdzs.free.svipss.top/storageRight?";
+                                                    URL url = new URL(path);
+                                                    //打开httpurlconnection
+                                                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                                                    conn.setRequestMethod("POST");              //设置POST方式获取数据
+                                                    conn.setConnectTimeout(5000);              //设置连接超时时间5秒
+                                                    conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");  //如果设置方式为post，则必须制定该属性
+                                                    //将数据进行编码,然后会自动的将该数据放到post中传到后台
+                                                    String data = "problemID=" + problemID +"&right=" + right+ "&type="+4;
+                                                    conn.setRequestProperty("Charset", "UTF-8");
+                                                    conn.setRequestProperty("connection", "keep-alive");
+                                                    conn.setDoOutput(true); //指定输出模式
+                                                    conn.getOutputStream().write(data.getBytes());  //将要传递的数据写入输出流
+                                                    int code = conn.getResponseCode();
+                                                    if (code == 200) {
+
+                                                    }
+                                                    conn.disconnect();
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }).start();
+                                        Message msg = new Message();
+                                        msg.what = INTENT;
+                                        handler.sendMessage(msg);
                                     }
                                 }
                                 conn.disconnect();
@@ -647,9 +1048,10 @@ public class TestProblemActivity extends AppCompatActivity {
                     shorts.setText(null);
                     ddlCity.setSelection(0, true);
                     break;
-
-
-
+                case INTENT :
+                    Intent intent=new Intent(TestProblemActivity.this,LessenTestActivity.class);
+                    startActivity(intent);
+                    break;
 
             }
         }

@@ -1,8 +1,10 @@
 package com.example.graduatedesign.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import com.example.graduatedesign.R;
+import com.example.graduatedesign.activity.IssueActivity;
+import com.example.graduatedesign.activity.ShowTestActivity;
 import com.example.graduatedesign.adapter.AlreadyIssueFragmentAdapter;
 import com.example.graduatedesign.bean.AlreadyTest;
 import com.example.graduatedesign.bean.LessenTest;
@@ -57,6 +61,11 @@ public class AlreadyIssueFragment extends Fragment {
                     List<AlreadyTest> testList=(List<AlreadyTest>)msg.obj;
                     AlreadyIssueFragmentAdapter adapter=new AlreadyIssueFragmentAdapter(getContext(),testList);
                     lst.setAdapter(adapter);
+                    lst.setOnItemClickListener((adapterView, view, i, l) -> {
+                        Intent intent=new Intent(getContext(), ShowTestActivity.class);
+                        intent.putExtra("testID",testList.get(i).getTestID());
+                        startActivity(intent);
+                    });
                     break;
             }
         }
@@ -100,6 +109,7 @@ public class AlreadyIssueFragment extends Fragment {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             String publishID=jsonObject.optString("publishID",null);
                             String testID=jsonObject.optString("testID",null);
+                            Log.d("343434343", testID);
                             String testName = jsonObject.optString("publishName", null);
                             int grade = Integer.parseInt(jsonObject.optString("fulls", null));
                             int number = Integer.parseInt(jsonObject.optString("numbers", null));

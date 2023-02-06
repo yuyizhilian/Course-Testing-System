@@ -1,7 +1,7 @@
 package com.example.backdesign.service;
 
+import com.example.backdesign.bean.ChatMessageBean;
 import com.example.backdesign.bean.MessageBean;
-import com.example.backdesign.bean.MessageItemBean;
 import com.example.backdesign.bean.ShowMessageBean;
 import com.example.backdesign.mapper.MessageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +37,22 @@ public class MessageService {
             messageID= bean.getMessageID();
             msg= bean.getMsg();
             user=mapper.getUserName(userID);
-            ShowMessageBean bean1=new ShowMessageBean(messageID,image,lessenName,user,times,msg);
+            ShowMessageBean bean1=new ShowMessageBean(messageID,s,userID,image,lessenName,user,times,msg);
             messageBeanList.add(bean1);
         }
         return messageBeanList;
+    }
+
+    public List<ChatMessageBean> chatMessageBeanService(String lessenID){
+        List<ChatMessageBean> list=new ArrayList<>();
+        List<MessageBean> messageBeanList=mapper.getLessenMessage(lessenID);
+        for(int i=0;i<messageBeanList.size();i++){
+            String userID=messageBeanList.get(i).getUserID();
+            String userName=mapper.getUserName(userID);
+            String image=mapper.getUserImage(userID);
+            ChatMessageBean bean=new ChatMessageBean(userID,image,userName,messageBeanList.get(i).getMsg(),messageBeanList.get(i).getTimes());
+            list.add(bean);
+        }
+        return list;
     }
 }

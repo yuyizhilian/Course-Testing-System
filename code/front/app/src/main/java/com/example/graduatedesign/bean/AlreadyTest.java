@@ -14,6 +14,7 @@ public class AlreadyTest {
 
     public AlreadyTest(String publishID,String testID,String name,int fulls,int numbers,String starts,String ends){
         this.publishID=publishID;
+        this.testID=testID;
         this.name=name;
         this.fulls=fulls;
         this.numbers=numbers;

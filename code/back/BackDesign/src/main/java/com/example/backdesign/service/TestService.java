@@ -1,11 +1,12 @@
 package com.example.backdesign.service;
 
 import com.example.backdesign.bean.AlreadyTestBean;
+import com.example.backdesign.bean.AnswerBean;
+import com.example.backdesign.bean.ProblemBean;
 import com.example.backdesign.bean.TestBean;
 import com.example.backdesign.mapper.TestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -75,26 +76,52 @@ public class TestService {
         }
     }
 
-    public Boolean storageRightService(String problemID,String rights){
-        int r= mapper.storageRightMapper(problemID,rights);
-        if(r==1){
-            return true;
-        }else{
-            return false;
-        }
+    public Boolean storageRightService(String problemID,String rights,int type){
+        int r= mapper.storageRightMapper(problemID,rights,type);
+        return r == 1;
     }
 
     public String storageUnreleasedTestService(String lessenID,String testID){
-        String uuid = "";
-        uuid = UUID.randomUUID().toString();
+        String unreleasedID = "";
+        unreleasedID = UUID.randomUUID().toString();
         Date utilDate = new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String times=dateFormat.format(utilDate );
-        int r= mapper.storageUnreleasedTestMapper(uuid,lessenID,testID,times);
+        mapper.storageTestTime(testID,times);
+        int r= mapper.storageUnreleasedTestMapper(unreleasedID,lessenID,testID,times);
         if(r==1){
-            return uuid;
+            return unreleasedID;
         }else{
             return null;
         }
+    }
+
+    public String storageIssueService(String starts, String ends,String passs,String fulls,String numbers, String highest,String paste,String cases,String mark,String gain,String testID, String lessenID){
+        String uuid = "";
+        uuid = UUID.randomUUID().toString();
+        String publishName=mapper.seePublishName(testID);
+        int r= mapper.storageIssueMapper(uuid,starts,ends,passs,fulls,numbers,highest,paste,cases,mark,gain,testID,lessenID,publishName);
+        if(r==1){
+            int result= mapper.deleteUnreleased(testID, lessenID);
+            if(result==1){
+                return uuid;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+
+    public String seeTestNameService(String testID){
+        return mapper.seePublishName(testID);
+    }
+
+    public List<ProblemBean> seeProblemService(String testID){
+        return mapper.seeProblemMapper(testID);
+    }
+
+    public List<AnswerBean> seeAnswerService(String problemID){
+        return mapper.seeAnswerMapper(problemID);
     }
 }

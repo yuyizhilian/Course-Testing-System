@@ -1,0 +1,78 @@
+package com.example.graduatedesign.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.example.graduatedesign.R;
+import com.example.graduatedesign.bean.ProblemAndAnswer;
+
+import java.util.List;
+
+public class MultipleAdapter extends BaseAdapter {
+    private List<ProblemAndAnswer> problemAndAnswerList;
+    private Context context;
+
+    public MultipleAdapter(Context context,List<ProblemAndAnswer> problemAndAnswerList){
+        this.context=context;
+        this.problemAndAnswerList=problemAndAnswerList;
+    }
+
+    @Override
+    public int getCount() {
+        return problemAndAnswerList.size();
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return problemAndAnswerList.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        ProblemAndAnswer problemAndAnswer=problemAndAnswerList.get(i);
+        ViewHolder holder;
+        if(view==null){
+            view= LayoutInflater.from(context).inflate(R.layout.list_multiple,null,false);
+            holder=new ViewHolder(view);
+            view.setTag(holder);
+        }else{
+            holder= (ViewHolder) view.getTag();
+        }
+        holder.num.setText(problemAndAnswer.getProblem().getNumber()+"");
+        holder.title.setText(problemAndAnswer.getProblem().getTitle()+"【多选题】");
+        holder.AA.setText(problemAndAnswer.getAnswer().get(0).getContent());
+        holder.BB.setText(problemAndAnswer.getAnswer().get(1).getContent());
+        holder.CC.setText(problemAndAnswer.getAnswer().get(2).getContent());
+        holder.DD.setText(problemAndAnswer.getAnswer().get(3).getContent());
+
+        return view;
+    }
+
+    public class ViewHolder{
+
+        private TextView num;
+        private TextView title;
+        private TextView AA;
+        private TextView BB;
+        private TextView CC;
+        private TextView DD;
+        public ViewHolder(View view) {
+            num=view.findViewById(R.id.num);
+            title=view.findViewById(R.id.title);
+            AA=view.findViewById(R.id.AA);
+            BB=view.findViewById(R.id.BB);
+            CC=view.findViewById(R.id.CC);
+            DD=view.findViewById(R.id.DD);
+        }
+
+    }
+}

@@ -25,7 +25,6 @@
                 android:src="@drawable/left" />
 
             <TextView
-                android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:gravity="center"
@@ -102,18 +101,22 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/test4"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:layout_margin="7dp"
-                android:text="发布班级"
+                android:text="满分"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/down" />
+
+            <EditText
+                android:id="@+id/full"
+                android:layout_width="110dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:background="@android:drawable/alert_light_frame"/>
 
         </LinearLayout>
 
@@ -125,7 +128,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/test"
+                android:id="@+id/test1"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
                 android:layout_weight="1"
@@ -136,8 +139,10 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/pass"
                 android:layout_width="110dp"
                 android:layout_height="60dp"
+                android:gravity="center"
                 android:background="@android:drawable/alert_light_frame"/>
 
         </LinearLayout>
@@ -160,8 +165,10 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/times"
                 android:layout_width="110dp"
                 android:layout_height="60dp"
+                android:gravity="center"
                 android:background="@android:drawable/alert_light_frame"/>
 
         </LinearLayout>
@@ -183,7 +190,7 @@
                 android:textSize="20sp" />
 
             <Switch
-                android:id="@+id/switchMsg1"
+                android:id="@+id/paste"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -206,7 +213,7 @@
                 android:textSize="20sp" />
 
             <Switch
-                android:id="@+id/switchMsg2"
+                android:id="@+id/highest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -229,7 +236,7 @@
                 android:textSize="20sp" />
 
             <Switch
-                android:id="@+id/switchMg3"
+                android:id="@+id/mark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -252,7 +259,7 @@
                 android:textSize="20sp" />
 
             <Switch
-                android:id="@+id/switchMsg4"
+                android:id="@+id/gain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -275,13 +282,36 @@
                 android:textSize="20sp" />
 
             <Switch
-                android:id="@+id/Msg"
+                android:id="@+id/random"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFF"
+            android:layout_margin="7dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:layout_margin="7dp"
+                android:text="忽略大小写"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Switch
+                android:id="@+id/cases"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
 
         <Button
+            android:id="@+id/publish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

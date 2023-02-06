@@ -12,16 +12,30 @@
         select testID from unreleased where lessenID=#{lessenID} order by times desc
     </select>
 
+    <update id="storageTestTime">
+        update test
+        set times=#{times}
+        where testID=#{testID}
+    </update>
+
     <resultMap id="getTestId" type="string">
         <result column="testID" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getAlreadyTestID" resultMap="alreadyTest">
-        select testID from issue where lessenID=#{lessenID} order by times desc
+        select testID from publish where lessenID=#{lessenID} order by times desc
     </select>
 
     <resultMap id="alreadyTest" type="string">
         <result column="testID" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="seeTestName" resultMap="testName">
+        select testName from test where testID=#{testID}
+    </select>
+
+    <resultMap id="testName" type="string">
+        <result column="testName" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getAlreadyTestMapper" resultType="com.example.backdesign.bean.AlreadyTestBean">
@@ -59,19 +73,55 @@
 
     <update id="storageRightMapper" >
         update problem
-        set rights = #{rights}
+        set rights = #{rights},types=#{type}
         where problemID = #{problemID}
     </update>
 
     <insert id="storageUnreleasedTestMapper">
-        insert into unreleased(unreleased,lessenID,testID,times)
+        insert into unreleased(unreleasedID,lessenID,testID,times)
         values (
-                   #{unreleased},
+                   #{unreleasedID},
                    #{lessenID},
                    #{testID},
                    #{times}
                )
     </insert>
+
+    <select id="seePublishName" resultType="string">
+        select testName from test where testID=#{testID}
+    </select>
+
+    <insert id="storageIssueMapper">
+        insert into publish(publishID,starts,ends,passs,fulls,numbers,highest,paste,cases,mark,gain,testID,lessenID,publishName)
+        values (
+                   #{publishID},
+                   #{starts},
+                   #{ends},
+                   #{passs},
+                   #{fulls},
+                   #{numbers},
+                   #{highest},
+                   #{paste},
+                   #{cases},
+                   #{mark},
+                   #{gain},
+                   #{testID},
+                   #{lessenID},
+                    #{publishName}
+               )
+    </insert>
+
+    <delete id="deleteUnreleased">
+        delete from unreleased where testID=#{testID} and lessenID=#{lessenID}
+    </delete>
+
+    <select id="seeProblemMapper" resultType="com.example.backdesign.bean.ProblemBean">
+        select * from problem where testID=#{testID} order by numbers desc
+    </select>
+
+    <select id="seeAnswerMapper" resultType="com.example.backdesign.bean.AnswerBean">
+        select * from answer where problemID=#{problemID} order by tag
+    </select>
 
 
 

@@ -68,6 +68,8 @@ public class WaitIssueFragment extends Fragment {
                     lst.setAdapter(adapter);
                     lst.setOnItemClickListener((adapterView, view, i, l) -> {
                         Intent intent=new Intent(getContext(), IssueActivity.class);
+                        intent.putExtra("testID",testList.get(i).getTestID());
+                        intent.putExtra("lessenID",lessenID);
                         startActivity(intent);
                     });
                     break;

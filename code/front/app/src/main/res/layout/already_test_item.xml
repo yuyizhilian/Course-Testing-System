@@ -59,10 +59,10 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:layout_width="80dp"
         android:layout_height="60dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:textSize="20dp"
         android:background="#0000FF"
         android:textColor="#FFF"
